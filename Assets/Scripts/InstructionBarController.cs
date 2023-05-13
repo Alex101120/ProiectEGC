@@ -3,29 +3,36 @@ using UnityEngine.UI;
 
 public class InstructionBarController : MonoBehaviour
 {
-    public Button okButton;
-    public GameObject instructionBar;
-    public float delayTime = 3f;
+    public Canvas canvas;
+    private bool canvasShown = false;
 
     private void Start()
     {
-   
-        bool instructionBarShownBefore = PlayerPrefs.GetInt("instructionBarShownBefore", 0) == 1;
-        if (!instructionBarShownBefore)
+        ShowCanvas();
+    }
+
+    private void Update()
+    {
+        if (canvasShown)
         {
-            instructionBar.SetActive(true);
-            Invoke(nameof(HideInstructionBar), delayTime);
-            okButton.onClick.AddListener(HideInstructionBar);
-            PlayerPrefs.SetInt("instructionBarShownBefore", 1);
-        }
-        else
-        {
-            instructionBar.SetActive(false);
+            HideCanvasAfter3Seconds();
         }
     }
 
-    private void HideInstructionBar()
+    private void ShowCanvas()
     {
-        instructionBar.SetActive(false);
+        canvas.enabled = true;
+        canvasShown = true;
+    }
+
+    private void HideCanvasAfter3Seconds()
+    {
+        Invoke(nameof(HideCanvas), 3f);
+    }
+
+    private void HideCanvas()
+    {
+        canvas.enabled = false;
+        canvasShown = false;
     }
 }
