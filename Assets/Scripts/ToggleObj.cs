@@ -7,7 +7,7 @@ public class ToggleObj : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             canvasToToggle.gameObject.SetActive(!canvasToToggle.gameObject.activeSelf);
         }
