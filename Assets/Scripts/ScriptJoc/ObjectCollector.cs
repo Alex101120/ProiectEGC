@@ -6,12 +6,18 @@ public class ObjectCollector : MonoBehaviour
     [SerializeField] private int objectsCollected = 0;
     [SerializeField] private GameObject[] objectsToCollect;
     [SerializeField] private Text collectedText;
-    [SerializeField] private Canvas winCanvas;
+    [SerializeField] private GameObject winObject;
+    [SerializeField] private Button Exit;
+    [SerializeField] private Button MainMenu;
+    [SerializeField] private Button Continue;
 
     private void Start()
     {
         UpdateCollectedText();
-        winCanvas.enabled = false;
+        winObject.SetActive(false);
+        Exit.onClick.AddListener(OnWinButton1Click);
+        MainMenu.onClick.AddListener(OnWinButton2Click);
+        Continue.onClick.AddListener(OnWinButton3Click);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,8 +36,8 @@ public class ObjectCollector : MonoBehaviour
                 Debug.Log("All objects collected!");
                 // do something when all objects are collected, such as triggering an event or opening a door
 
-                // activate the win canvas
-                winCanvas.enabled = true;
+                // activate the win object
+                winObject.SetActive(true);
 
                 // activate the cursor
                 Cursor.lockState = CursorLockMode.None;
@@ -40,16 +46,6 @@ public class ObjectCollector : MonoBehaviour
                 // pause the game
                 Time.timeScale = 0.0f;
             }
-        }
-    }
-
-    private void Update()
-    {
-        // hide the cursor when the player clicks the mouse
-        if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 
@@ -68,5 +64,24 @@ public class ObjectCollector : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void OnWinButton1Click()
+    {
+        
+        // Add your button functionality here
+    }
+
+    private void OnWinButton2Click()
+    {
+        
+        // Add your button functionality here
+    }
+
+    private void OnWinButton3Click()
+    {
+        
+        Time.timeScale = 1f;
+        Cursor.visible = false;
     }
 }
