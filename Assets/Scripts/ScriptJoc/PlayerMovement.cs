@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-    [HideInInspector] public TextMeshProUGUI text_speed;
+    [HideInInspector] public float text_speed;
 
     private void Start()
     {
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
 
-        
+        text_speed=flatVel.magnitude;
     }
 
     private void Jump()
